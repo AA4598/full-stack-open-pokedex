@@ -3,7 +3,7 @@ name: Hello World!
 on:
   push:
     branches:
-      - master
+      - main
       # note that your "main" branch might be called main instead of master
 
 jobs:
@@ -12,4 +12,5 @@ jobs:
     steps:
       - name: Say hello
         run:
-          echo "Hello World!"
+          echo "Hello World!"    
+    
