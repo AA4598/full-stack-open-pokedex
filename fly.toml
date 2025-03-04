@@ -11,6 +11,17 @@ primary_region = 'arn'
 [env]
   PORT = "3000"
 
+[[http_service.checks]]
+  grace_period = '10s'
+  interval = '30s'
+  method = 'GET'
+  timeout = '5s'
+  path = '/'
+
+
+[deploy]
+  strategy = 'canary'
+
 [processes]
   app = "node app.js" # add this
 
