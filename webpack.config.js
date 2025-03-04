@@ -42,7 +42,9 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"],
   },
   devServer: {
-    historyApiFallback: true,    
+    historyApiFallback: true,
+    allowedHosts: "all"
+
   },
   plugins: [
     new HtmlWebPackPlugin({
