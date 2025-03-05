@@ -1,0 +1,29 @@
+name: Periodic Health Check
+
+on:
+  schedule:
+    #- cron: "0 */12 * * *"  # Runs every 12 hours
+    - cron: "*/5 * * * *"  # Runs every 5 minutes
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check application health
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: "https://full-stack-open-pokedex-proud-cloud-9415.fly.dev/health"
+          max-attempts: 3
+          retry-delay: 5s
+          follow-redirect: true
+
+      # ✅ Notify Discord on Failure
+      - name: Notify Discord on Failure
+        if: failure()
+        uses: Ilshidur/action-discord@master
+        with:
+          args: |
+            ❌ Health check failed! Your application is down.
+            **Checked URL:** https://full-stack-open-pokedex-proud-cloud-9415.fly.dev/health
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
