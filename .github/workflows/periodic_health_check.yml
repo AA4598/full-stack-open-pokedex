@@ -3,7 +3,7 @@ name: Periodic Health Check
 on:
   schedule:
     #- cron: "0 */12 * * *"  # Runs every 12 hours
-    - cron: "*/5 * * * *"  # Runs every 5 minutes
+    - cron: "*/1 * * * *"  # Runs every 5 minutes
   workflow_dispatch:  # Allows manual execution
 
 jobs:
